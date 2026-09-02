@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import {
   Alert, FlatList, KeyboardAvoidingView, Platform, Pressable, SafeAreaView,
-  StyleSheet, Text, TextInput, View,
+  Share, StyleSheet, Text, TextInput, View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
@@ -71,10 +71,20 @@ export default function App() {
 
 function GarageScreen(p: { bikes: Bike[]; premium: boolean; onAdd: (name: string) => void; onOpen: (id: string) => void }) {
   const [name, setName] = useState('');
+  const exportLog = () => {
+    const rows = p.bikes.flatMap((b) =>
+      b.services.map((s) => `${b.name};${s.date};${s.what};${s.costKr || ''}`));
+    Share.share({ message: ['bike;date;service;cost_kr', ...rows].join('\n'), title: 'Spoke service log' });
+  };
   return (
     <View style={st.page}>
       <Text style={st.h1}>Garage</Text>
-      {p.premium && <Text style={st.badge}>Spoke+ member</Text>}
+      {p.premium && (
+        <View style={[st.row, { justifyContent: 'space-between' }]}>
+          <Text style={st.badge}>Spoke+ member</Text>
+          <Pressable onPress={exportLog}><Text style={st.link}>Export log</Text></Pressable>
+        </View>
+      )}
       <FlatList data={p.bikes} keyExtractor={(b) => b.id}
         ListEmptyComponent={<Text style={st.dim}>No bikes yet — add your first one.</Text>}
         renderItem={({ item }) => (
@@ -177,7 +187,7 @@ function PaywallScreen(p: { onUnlocked: () => void; onBack: () => void }) {
         </Pressable>
       </View>
       <Text style={st.h1}>Spoke+</Text>
-      <Text style={st.dim}>Unlimited bikes, service reminders, export. The price? That is between you and the dealer.</Text>
+      <Text style={st.dim}>Unlimited bikes and full service-history export. The price? That is between you and the dealer.</Text>
       <FlatList data={chat} keyExtractor={(_, i) => String(i)} style={{ flex: 1, marginVertical: 12 }}
         renderItem={({ item }) => (
           <View style={[st.bubble, item.who === 'you' ? st.you : st.dealer]}>

@@ -5,7 +5,24 @@
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
-    "ios": { "bundleIdentifier": "no.nokto.spoke", "supportsTablet": false },
-    "android": { "package": "no.nokto.spoke" }
+    "ios": {
+      "bundleIdentifier": "no.nokto.spoke",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "no.nokto.spoke",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#101312"
+      },
+      "permissions": []
+    },
+    "icon": "./assets/icon.png",
+    "backgroundColor": "#101312",
+    "splash": {
+      "backgroundColor": "#101312",
+      "resizeMode": "contain",
+      "image": "./assets/icon.png"
+    }
   }
 }

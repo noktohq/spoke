@@ -46,6 +46,9 @@ export async function purchasePackage(packageId: string): Promise<boolean> {
   const offerings = await purchases.getOfferings();
   const pkgs = offerings.current?.availablePackages ?? [];
   const pkg = pkgs.find((p: any) => p.identifier === packageId || p.product?.identifier === packageId);
+  // Expo Go's Preview API Mode configures fine but serves mock offerings that
+  // won't contain our tier packages — treat that as a mock purchase in dev.
+  if (!pkg && __DEV__) return true;
   if (!pkg) throw new Error(`package ${packageId} not in current offering`);
   try {
     const { customerInfo } = await purchases.purchasePackage(pkg);

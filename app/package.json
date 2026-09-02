@@ -11,10 +11,11 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "*",
     "expo": "~54.0.0",
+    "expo-dev-client": "*",
     "expo-status-bar": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-purchases": "^8.0.0"
+    "react-native-purchases": "latest"
   },
   "devDependencies": {
     "@types/react": "*",

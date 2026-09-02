@@ -8,7 +8,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import { acceptDeal, isLostSession, makeOffer, openSession, SellerState } from './src/api';
-import { initPurchases, purchasePackage } from './src/purchases';
+import { hasEntitlement, initPurchases, isMock, onEntitlementChange, purchasePackage, restorePurchases } from './src/purchases';
 
 type Service = { id: string; date: string; what: string; costKr: string };
 type Bike = { id: string; name: string; services: Service[] };
@@ -24,7 +24,11 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>({ name: 'garage' });
 
   useEffect(() => {
-    initPurchases();
+    initPurchases().then(async () => {
+      if (isMock()) return; // Expo Go: AsyncStorage-flagget styrer
+      setPremium(await hasEntitlement());
+      onEntitlementChange(setPremium);
+    });
     AsyncStorage.getItem('spoke:v1').then((raw) => {
       if (!raw) return;
       const d = JSON.parse(raw);
@@ -157,6 +161,7 @@ function PaywallScreen(p: { onUnlocked: () => void; onBack: () => void }) {
       say('dealer', s.message);
       const ok = await purchasePackage(s.packageId!);
       if (ok) { Alert.alert('Spoke+', `Unlocked at ${kr(s.dealPrice!)} / month.`); p.onUnlocked(); }
+      else say('dealer', 'No hard feelings — the offer stands for 48 hours.');
     } catch (e) {
       if (isLostSession(e)) { say('dealer', 'Where were we? Let us start over.'); await open(); }
       else Alert.alert('Purchase failed', String((e as Error).message));
@@ -165,7 +170,12 @@ function PaywallScreen(p: { onUnlocked: () => void; onBack: () => void }) {
 
   return (
     <KeyboardAvoidingView style={st.page} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Pressable onPress={p.onBack}><Text style={st.link}>‹ Not now</Text></Pressable>
+      <View style={[st.row, { justifyContent: 'space-between' }]}>
+        <Pressable onPress={p.onBack}><Text style={st.link}>‹ Not now</Text></Pressable>
+        <Pressable onPress={async () => { if (await restorePurchases()) p.onUnlocked(); }}>
+          <Text style={st.link}>Restore purchases</Text>
+        </Pressable>
+      </View>
       <Text style={st.h1}>Spoke+</Text>
       <Text style={st.dim}>Unlimited bikes, service reminders, export. The price? That is between you and the dealer.</Text>
       <FlatList data={chat} keyExtractor={(_, i) => String(i)} style={{ flex: 1, marginVertical: 12 }}

@@ -1,6 +1,6 @@
 // RevenueCat wrapper. In Expo Go (no native module) it falls back to a mock
 // purchase so the whole flow is demoable before the dev build exists.
-const RC_API_KEY = 'appl_REPLACE_ME'; // RevenueCat public SDK key (iOS)
+const RC_API_KEY = 'test_quBRWnsPiQcrbQChCBAYtglGrMG'; // RevenueCat public SDK key (bytt til goog_-nøkkelen når Play-appen er koblet)
 
 let purchases: any = null;
 

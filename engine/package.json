@@ -1,0 +1,10 @@
+{
+  "name": "@spoke/negotiation-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tier-based price negotiation engine — the structural floor behind Spoke's negotiable subscription",
+  "scripts": {
+    "test": "node --test"
+  }
+}

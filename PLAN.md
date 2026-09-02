@@ -74,6 +74,20 @@ Grand Prize dømmes på traction — ikke et mål.
 - [ ] Gratis prøveperiode ELLER promokode til dommerne
 - [ ] RevenueCat SDK driver minst ett kjøp
 
+## Regel-notater (fra offisielle regler, lest 2. sep)
+
+- Appen MÅ være tilgjengelig i USA — velg USA (+ Norge) i Play-distribusjonen.
+- Dommerne tester 1.–13. oktober: selger-API, promokode/gratis prøve og appen
+  må virke til 13. okt, ikke bare til fristen. Vinnere 21. okt.
+- HAMM belønner «a diverse mix of revenue streams»: legg til én sekundær
+  strøm — f.eks. et engangs livstidskjøp som også kan prutes på.
+- Nokto (org) kan stå som Entrant med Edin som Representative; premien
+  utbetales da til selskapet.
+- Demovideo: ingen tredjeparts varemerker eller opphavsbeskyttet musikk.
+- Innsendingen kan lagres som utkast og redigeres fritt frem til fristen.
+- Ship Kit låses opp via milepæler (registrering, RC-prosjekt, testkjøp m.m.)
+  — krever deltakerskjemaet som kommer på e-post etter registrering.
+
 ## Nokto må gjøre (blokkerer alt annet)
 
 1. **I dag: sjekk D-U-N-S for Nokto** (gratis oppslag, dnb.com). Finnes →

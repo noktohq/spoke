@@ -1,0 +1,23 @@
+{
+  "name": "spoke-app",
+  "version": "0.1.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo run:ios",
+    "android": "expo run:android"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "*",
+    "expo": "~54.0.0",
+    "expo-status-bar": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-purchases": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "*",
+    "typescript": "^5.5.0"
+  }
+}

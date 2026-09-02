@@ -13,9 +13,22 @@ By [Nokto](https://nokto.no).
 
 ```
 engine/   tier-based negotiation engine (plain JS, zero deps, unit-tested)
-server/   seller API for the app (Cloud Run)            — coming
-app/      Expo React Native app with RevenueCat SDK     — coming
+server/   seller API — the AI dealer over pre-approved tiers (Cloud Run-ready)
+app/      Expo React Native scaffold: garage, service log, haggle paywall
 ```
+
+## Run it
+
+```bash
+cd engine && npm test              # engine: 9 tests
+cd ../server && npm test           # API black-box: full negotiation over HTTP
+cd ../app && npm install && npx expo install --fix && npx expo start
+```
+
+The app runs in Expo Go with a mocked purchase; `react-native-purchases` and a
+real RevenueCat offering (five packages, `spoke_plus_<minor>` ids, entitlement
+`spoke_plus`) activate in the dev build. Point the app at a seller API with
+`EXPO_PUBLIC_SELLER_API`.
 
 ## Test the engine
 

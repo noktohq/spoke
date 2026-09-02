@@ -1,0 +1,11 @@
+{
+  "name": "@spoke/seller-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Spoke's AI bike dealer — negotiates the Spoke+ price over pre-approved store tiers",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  }
+}

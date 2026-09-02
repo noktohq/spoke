@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Spoke",
+    "slug": "spoke",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "no.nokto.spoke", "supportsTablet": false },
+    "android": { "package": "no.nokto.spoke" }
+  }
+}

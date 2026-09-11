@@ -35,3 +35,7 @@ real RevenueCat offering (five packages, `spoke_plus_<minor>` ids, entitlement
 ```bash
 cd engine && npm test
 ```
+
+## License
+
+MIT © 2026 Nokto

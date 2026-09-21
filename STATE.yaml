@@ -1,0 +1,93 @@
+# STATE.yaml — levende status for dette repoet (NOKTO CONTROL TOWER).
+# Schema: nokto-ops/control/schema/state.schema.json. Oppdateres av `nokto stop` — ikke dupliser i README.
+schema_version: 1
+project: Spoke — sykkelservice-app med prutbart abonnement (RevenueCat Shipaton 2026)
+repo: noktohq/spoke
+state: active
+phase: lansering i Google Play før 30. september
+now: Lansering i Google Play før Shipaton-fristen 30. september 23:45 PDT (LAUNCH.md)
+next:
+  - '[E] Play Console: opprett appen «Spoke — Bike Care Log», store listing fra store/listing.md, ikon
+    app/assets/icon.png'
+  - '[E] Last opp docs/privacy.html på nokto.no og lim inn personvern-URL i Play Console'
+  - '[E] EAS-bygg: cd app && eas build --platform android --profile production → last opp AAB (intern
+    testing)'
+  - '[E] Opprett subscription spoke-plus med fem base plans (p3990…p1990) + spoke-lifetime; koble RevenueCat
+    (package no.nokto.spoke), entitlement spoke_pro'
+  - Bytt test_-nøkkel i app/src/purchases.ts til goog_-nøkkel; test ekte kjøp med lisenstester
+  - '[E] 7 dagers free trial på alle base plans (Shipaton-krav); produksjonslansering (mål 24. sep); Devpost-innsending
+    innen 29. sep'
+waiting: []
+blockers: []
+decisions_needed: []
+done:
+  - what: MIT-lisens og CI for engine og server
+    at: '2026-09-11'
+    evidence: 'PR #1'
+  - what: 'Lanseringspakke: ikoner, splash, paywall-tekst, CSV-eksport, butikktekster, personvernerklæring'
+    at: '2026-09-02'
+    evidence: commit 7c2df10
+  - what: Full RevenueCat-integrasjon (entitlement, lytter, restore)
+    at: '2026-09-02'
+    evidence: commit e281401
+milestones:
+  - id: motor
+    title: Trinnbasert forhandlingsmotor (9 tester)
+    status: done
+    date: '2026-09-02'
+    evidence: engine/
+  - id: selger-api
+    title: Selger-API, Cloud Run-klar
+    status: done
+    date: '2026-09-02'
+    evidence: server/, Dockerfile
+  - id: app
+    title: 'Expo-app: garasje, servicelogg, paywall'
+    status: done
+    date: '2026-09-02'
+    evidence: app/
+  - id: revenuecat
+    title: RevenueCat SDK integrert
+    status: done
+    date: '2026-09-02'
+    evidence: commit e281401
+  - id: play-listing
+    title: App opprettet i Play Console med første AAB
+    status: planned
+    date: null
+    evidence: 'LAUNCH.md 1–4: status ukjent'
+  - id: produkter
+    title: Produkter + RevenueCat koblet, testkjøp verifisert
+    status: planned
+    date: null
+    evidence: LAUNCH.md 5–8
+  - id: publisert
+    title: Publisert i Google Play
+    status: planned
+    date: '2026-09-24'
+    evidence: LAUNCH.md mål
+  - id: devpost
+    title: Devpost levert
+    status: planned
+    date: '2026-09-29'
+    evidence: LAUNCH.md
+environment:
+  runtime: Expo/React Native (EAS Build), Node-server uten avhengigheter
+  deploy: Cloud Run `spoke-seller` i nokto-cue-agent (planlagt); Google Play via EAS
+  url: null
+  notes: Android-først; Apple-veien skrinlagt
+production_status: not_deployed
+production_note: Ikke publisert i Google Play per repoets siste commit 2026-09-11. Status for [E]-punktene
+  i LAUNCH.md er ukjent.
+branch: main
+last_verified_commit: bc688a3
+last_checkpoint: null
+last_session: null
+security_findings: []
+updated_at: '2026-09-21T05:37:52Z'
+sources:
+  - README.md
+  - PLAN.md
+  - LAUNCH.md
+  - commits
+  - GitHub-snapshot 2026-09-21
